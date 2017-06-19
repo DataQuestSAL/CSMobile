@@ -1,0 +1,23 @@
+portfolio {
+  .div_portolio_entry {
+    width: 100%;
+    position: relative;
+    border: 1px solid black;
+    border-radius: 3px;
+    padding: 10px;
+  }
+  .div_portolio_entry_holdername {
+    width: 100%;
+    font-size: small;
+    font-weight: bold;
+  }
+  .div_portolio_entry_policyno {
+    min-width: 95%;
+    display: inline-block;
+  }
+  .div_portolio_entry_action {
+    display: inline-block;
+    font-size: large;
+    vertical-align: bottom;
+  }
+}

@@ -31,9 +31,6 @@ export class HomePage {
       this.items$ = portfolioSvc.getPortfolio();
   }
 
-  handleClick(item){    
-    alert("Ok, Now we can do whatevver you want with policy: " + item.PolicyNo);
-  }
-
+ 
 
 }

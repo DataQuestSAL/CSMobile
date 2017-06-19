@@ -9,13 +9,13 @@ import { HttpModule } from '@angular/http';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
+import { PortfolioComponent } from '../components/portfolio/portfolio';
 
 @NgModule({
-  declarations: [
-
-    
+  declarations: [    
     MyApp,
-    HomePage
+    HomePage,
+    PortfolioComponent
   ],
   imports: [
     BrowserModule,

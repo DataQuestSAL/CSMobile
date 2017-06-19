@@ -1,14 +1,5 @@
-<ion-header>
-  <ion-navbar>
-    <ion-title>
-      Portfolio
-    </ion-title>
-  </ion-navbar>
-</ion-header>
-
-<ion-content padding>
-  <!--<ion-list *ngIf="(items$ | async) as portfolioItems else loadingTemplate">
-    <ion-item *ngFor="let item of portfolioItems">
+<ion-list *ngIf="policies else loadingTemplate">
+    <ion-item *ngFor="let item of policies">
       <div class="div_portolio_entry" (click)='handleClick(item)'>
         <div class="div_portolio_entry_holdername">
           {{item.HolderName}}
@@ -21,7 +12,10 @@
         </div>
       </div>
     </ion-item>
-  </ion-list>-->
-  <portfolio [policies]="(items$ | async)"></portfolio>
+  </ion-list>
 
-</ion-content>
+    <ng-template #loadingTemplate>
+    <ion-item text-center>
+      <ion-spinner></ion-spinner>Loading...    
+    </ion-item>
+  </ng-template>

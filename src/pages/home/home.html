@@ -7,19 +7,25 @@
 </ion-header>
 
 <ion-content padding>
-  <ion-list>
-    <ion-item *ngFor="let item of items">
+  <ion-list *ngIf="(items$ | async) as portfolioItems else loadingTemplate">
+    <ion-item *ngFor="let item of portfolioItems">
       <div class="div_portolio_entry" (click)='handleClick(item)'>
-          <div class="div_portolio_entry_holdername">
-            {{item.HolderName}}
-          </div>
-          <div class="div_portolio_entry_policyno">
-            {{item.PolicyType + ' - ' + item.PolicyNo}}
-          </div>
-          <div class="div_portolio_entry_action">
-            <ion-icon name="arrow-dropdown"></ion-icon>
-          </div>
+        <div class="div_portolio_entry_holdername">
+          {{item.HolderName}}
+        </div>
+        <div class="div_portolio_entry_policyno">
+          {{item.PolicyType + ' - ' + item.PolicyNo}}
+        </div>
+        <div class="div_portolio_entry_action">
+          <ion-icon name="arrow-dropdown"></ion-icon>
+        </div>
       </div>
     </ion-item>
+
   </ion-list>
+  <ng-template #loadingTemplate>
+    <ion-item text-center>
+      <ion-spinner></ion-spinner>Loading...      
+    </ion-item>
+  </ng-template>
 </ion-content>

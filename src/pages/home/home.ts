@@ -12,7 +12,10 @@ import 'rxjs/add/operator/map';
 })
 export class HomePage {
 
-  public items : any[] = [];
+  //public items$ : Portfolio[] = [];
+
+  items$ : Observable<Portfolio[]>;
+
   constructor(public navCtrl: NavController, public http: Http, public portfolioSvc: PortflioService) {
   
   //  this.http.get('http://192.168.12.28/WebAPIProtoType/Api/Polcom/Get_Portfolio')
@@ -24,9 +27,8 @@ export class HomePage {
   //            }
   //           );
 
-      portfolioSvc.getPortfolio().subscribe( portfolio => {
-        this.items = portfolio;
-      });
+
+      this.items$ = portfolioSvc.getPortfolio();
   }
 
   handleClick(item){    

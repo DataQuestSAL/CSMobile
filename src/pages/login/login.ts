@@ -22,6 +22,9 @@ export class LoginPage {
           if (data.Is_Authentic == true){
             alert("Mabrouk");
           }
+        }, 
+        err => {
+          console.log(err)
         });
   }
 

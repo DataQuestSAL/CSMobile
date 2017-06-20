@@ -1,21 +1,21 @@
 <ion-list *ngIf="policies else loadingTemplate">
-    <ion-item *ngFor="let item of policies">
-      <div class="div_portolio_entry" (click)='handleClick(item)'>
-        <div class="div_portolio_entry_holdername">
-          {{item.HolderName}}
-        </div>
-        <div class="div_portolio_entry_policyno">
-          {{item.PolicyType + ' - ' + item.PolicyNo}}
-        </div>
-        <div class="div_portolio_entry_action">
-          <ion-icon name="arrow-dropdown"></ion-icon>
-        </div>
+  <ion-item *ngFor="let item of policies">
+    <div class="div_portolio_entry" (click)='handleClick(item)'>
+      <div class="div_portolio_entry_holdername">
+        {{item.HolderName}}
       </div>
-    </ion-item>
-  </ion-list>
+      <div class="div_portolio_entry_policyno">
+        {{item.PolicyType + ' - ' + item.PolicyNo}}
+      </div>
+      <div class="div_portolio_entry_action">
+        <ion-icon name="arrow-dropdown"></ion-icon>
+      </div>
+    </div>
+  </ion-item>
+</ion-list>
 
-    <ng-template #loadingTemplate>
-    <ion-item text-center>
-      <ion-spinner></ion-spinner>Loading...    
-    </ion-item>
-  </ng-template>
+<ng-template #loadingTemplate>
+  <ion-item text-center>
+    <ion-spinner></ion-spinner>Loading...
+  </ion-item>
+</ng-template>

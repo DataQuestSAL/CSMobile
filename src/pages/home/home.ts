@@ -16,7 +16,7 @@ export class HomePage {
 
   items$ : Observable<Portfolio[]>;
 
-  constructor(public navCtrl: NavController, public http: Http, public portfolioSvc: PortflioService) {
+  constructor(public navCtrl: NavController,  public portfolioSvc: PortflioService) {
       this.items$ = portfolioSvc.getPortfolio();
   }
 

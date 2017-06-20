@@ -10,11 +10,14 @@ import { HttpModule } from '@angular/http';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { PortfolioComponent } from '../components/portfolio/portfolio';
+import { LoginPage } from "../pages/login/login";
+import { LoginService } from "../providers/login.service";
 
 @NgModule({
   declarations: [    
     MyApp,
     HomePage,
+    LoginPage,
     PortfolioComponent
   ],
   imports: [
@@ -25,12 +28,14 @@ import { PortfolioComponent } from '../components/portfolio/portfolio';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage
+    HomePage,
+    LoginPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
     PortflioService,
+    LoginService,
     Api,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]

@@ -16,6 +16,7 @@ export class Portfolio {
     }
 
 
+
     private _PolicyNo: string;
     public get PolicyNo(): string {
         return this._PolicyNo;

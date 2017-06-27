@@ -24,6 +24,6 @@ export class LoginService {
             .map(res => res.json())
             .do(user => console.log(user))
             .do(user => this.userSubject.next(user))
-            .take(1);
+            .publishLast().refCount();
     }
 }

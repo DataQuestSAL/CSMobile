@@ -2,6 +2,11 @@
 // http://ionicframework.com/docs/v2/theming/
 $font-path: "../assets/fonts";
 
+@font-face {
+    font-family: 'AllianzRegular';
+    src: url('../assets/fonts/AllianzSans-Regular.ttf');
+}
+
 @import "ionic.globals";
 
 
@@ -11,7 +16,7 @@ $font-path: "../assets/fonts";
 // the Sass variables found in Ionic's source scss files.
 // To view all the possible Ionic variables, see:
 // http://ionicframework.com/docs/v2/theming/overriding-ionic-variables/
-
+$font-family-base: '';
 
 
 
@@ -73,6 +78,6 @@ $colors: (
 
 // Fonts
 // --------------------------------------------------
-
+//@import "AllianzRegular";
 @import "roboto";
 @import "noto-sans";

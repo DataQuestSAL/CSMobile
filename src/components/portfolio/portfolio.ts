@@ -1,3 +1,6 @@
+import { PolicyActionsComponent } from './../policy-actions/policy-actions';
+import { PolicyDetailsComponent } from './../policy-details/policy-details';
+import { NavController, PopoverController, NavOptions } from 'ionic-angular';
 import { Portfolio } from './../../models/portfolio.model';
 import { Component, Input } from '@angular/core';
 
@@ -15,11 +18,25 @@ export class PortfolioComponent {
   @Input()
   policies: Portfolio[];
 
-  constructor() {
+  constructor(public popoverCtrl: PopoverController,
+              public NavCtrl: NavController) {
   }
 
-   handleClick(item){    
-    alert("Ok, Now we can do whatevver you want with policy: " + item.PolicyNo);
+  handleClick(policy: Portfolio) {
+
+  }
+
+  presentPopover(event: NavOptions, policy: Portfolio) {
+    debugger;
+    let popover = this.popoverCtrl.create(PolicyActionsComponent, {
+      viewDetails: () => {
+        this.NavCtrl.push(PolicyDetailsComponent, { "Pol_serno": policy.Pol_serno })
+      }
+    });
+
+    popover.present({
+      ev: event
+    });
   }
 
 

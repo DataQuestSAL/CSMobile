@@ -17,9 +17,11 @@ export class HomePage {
   items$ : Observable<Portfolio[]>;
 
   constructor(public navCtrl: NavController,  public portfolioSvc: PortflioService) {
-      this.items$ = portfolioSvc.getPortfolio();
+      
   }
 
- 
+ ngOnInit() {
+   this.items$ = this.portfolioSvc.getPortfolio();
+ }
 
 }

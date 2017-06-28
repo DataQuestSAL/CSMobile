@@ -1,3 +1,4 @@
+import { APP_DI_CONFIG, APP_CONFIG } from './app.config';
 import { Api } from './../providers/api.service';
 import { PortflioService } from './../providers/portfolio.service';
 import { BrowserModule } from '@angular/platform-browser';
@@ -12,13 +13,17 @@ import { HomePage } from '../pages/home/home';
 import { PortfolioComponent } from '../components/portfolio/portfolio';
 import { LoginPage } from "../pages/login/login";
 import { LoginService } from "../providers/login.service";
+import { PolicyDetailsComponent } from '../components/policy-details/policy-details';
+import { PolicyActionsComponent } from '../components/policy-actions/policy-actions';
 
 @NgModule({
   declarations: [    
     MyApp,
     HomePage,
     LoginPage,
-    PortfolioComponent
+    PortfolioComponent,
+    PolicyDetailsComponent,
+    PolicyActionsComponent
   ],
   imports: [
     BrowserModule,
@@ -29,7 +34,9 @@ import { LoginService } from "../providers/login.service";
   entryComponents: [
     MyApp,
     HomePage,
-    LoginPage
+    LoginPage,
+    PolicyDetailsComponent,
+    PolicyActionsComponent
   ],
   providers: [
     StatusBar,
@@ -37,7 +44,8 @@ import { LoginService } from "../providers/login.service";
     PortflioService,
     LoginService,
     Api,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    { provide: APP_CONFIG, useValue: APP_DI_CONFIG }
   ]
 })
 export class AppModule {}

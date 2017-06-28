@@ -7,6 +7,16 @@ export class Portfolio {
         }
     }
 
+    
+    private _Pol_serno : string;
+    public get Pol_serno() : string {
+        return this._Pol_serno;
+    }
+    public set Pol_serno(v : string) {
+        this._Pol_serno = v;
+    }
+    
+
     private _PolicyType: string;
     public get PolicyType(): string {
         return this._PolicyType;

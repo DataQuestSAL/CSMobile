@@ -1,0 +1,14 @@
+<!-- Generated template for the PolicyDetailsComponent component -->
+<ion-header>
+  <ion-navbar>
+    <ion-title></ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-list *ngIf="(currentPolicy | async) else loading">
+  <ion-item>
+    <ion-label></ion-label>
+  </ion-item>
+</ion-list>
+<ng-template #loading>
+  <ion-spinner></ion-spinner>Loading...
+</ng-template>

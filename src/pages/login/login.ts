@@ -12,7 +12,7 @@ import { LoginService } from "../../providers/login.service";
 })
 export class LoginPage {
 
-  public user: User = new User({});
+  public user: User = new User({USER_NAME: "rony", PASSWORD: "111111"});
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     public loginSvc: LoginService,
@@ -28,7 +28,8 @@ export class LoginPage {
     loading.present();
 
     this.loginSvc.Authenticate(this.user.USER_NAME, this.user.PASSWORD).subscribe((data) => {
-      alert(JSON.stringify(data));
+      //alert(JSON.stringify(data));
+      loading.dismiss();
       if (data.Is_Authentic == true) {
         this.navCtrl.setRoot(HomePage);
       }

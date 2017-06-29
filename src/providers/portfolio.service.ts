@@ -1,3 +1,4 @@
+import { MockPolicy } from './mocks/mock-policy-details';
 import { AppConfig, APP_CONFIG, ApplicationMode } from './../app/app.config';
 import { MockPortfolio } from './mocks/mock-portfolio';
 import { Policy } from './../models/policy.model';
@@ -15,8 +16,8 @@ export class PortflioService {
 
     public portfolio$: Observable<Portfolio[]> = this.Lst_Porfolio.asObservable();
 
-    constructor(public api: Api, 
-                @Inject(APP_CONFIG) config: AppConfig) {
+    constructor(public api: Api,
+        @Inject(APP_CONFIG) config: AppConfig) {
         this.appconfig = config;
     }
 
@@ -24,28 +25,33 @@ export class PortflioService {
         debugger
         if (this.appconfig.__APPLICATION_MODE == ApplicationMode.ONLINE) {
             this.api.get(this.endPoint + '/Get_Portfolio')
-            .map(res => res.json())
-            .subscribe( lst => {
-                let Lst_Tmp: Portfolio[] = [];
-                lst.forEach(port => { Lst_Tmp.push(new Portfolio(port)); });
-                this.Lst_Porfolio.next(Lst_Tmp);
-            } , err => {
-                err => Observable.throw(err)
-            })
+                .map(res => res.json())
+                .subscribe(lst => {
+                    let Lst_Tmp: Portfolio[] = [];
+                    lst.forEach(port => { Lst_Tmp.push(new Portfolio(port)); });
+                    this.Lst_Porfolio.next(Lst_Tmp);
+                }, err => {
+                    err => Observable.throw(err)
+                })
 
         } else {
-            this.Lst_Porfolio.next(MockPortfolio)           
-        }        
+            this.Lst_Porfolio.next(MockPortfolio)
+        }
         return this.portfolio$;
     }
 
     getPolicyDetails(Pol_serno: number): Observable<Policy> {
-        return this.api.post(this.endPoint + '/Get_PI_Policy_Details',
-        {
-            "PolSerno": Pol_serno,
-            "ROLEID": "I"
-        })
-        .map(res => res.json())
-        .publishLast().refCount();
+        if (this.appconfig.__APPLICATION_MODE == ApplicationMode.ONLINE) {
+            return this.api.post(this.endPoint + '/Get_PI_Policy_Details',
+                {
+                    "PolSerno": Pol_serno,
+                    "ROLEID": "I"
+                })
+                .map(res => res.json())
+                .publishLast().refCount();
+        } else {
+            return Observable.of(MockPolicy);
+        }
+
     }
 }

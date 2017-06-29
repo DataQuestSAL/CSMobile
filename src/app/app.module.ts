@@ -1,3 +1,4 @@
+import { KeysPipe } from './../pipes/pipe.keys';
 import { APP_DI_CONFIG, APP_CONFIG } from './app.config';
 import { Api } from './../providers/api.service';
 import { PortflioService } from './../providers/portfolio.service';
@@ -23,7 +24,8 @@ import { PolicyActionsComponent } from '../components/policy-actions/policy-acti
     LoginPage,
     PortfolioComponent,
     PolicyDetailsComponent,
-    PolicyActionsComponent
+    PolicyActionsComponent,
+    KeysPipe
   ],
   imports: [
     BrowserModule,

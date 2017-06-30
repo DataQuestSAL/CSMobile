@@ -1,18 +1,30 @@
 import { Observable } from 'rxjs/Observable';
-import { Injectable } from '@angular/core';
-import { Http, RequestOptions, URLSearchParams } from '@angular/http';
+import { Injectable, } from '@angular/core';
+import { Http, RequestOptions, URLSearchParams, Headers } from '@angular/http';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw'
+import { Storage } from '@ionic/storage';
+import { Toast } from '@ionic-native/toast';
 /**
  * Api is a generic REST Api handler. Set your API url first.
  */
 @Injectable()
 export class Api {
-  url: string = 'http://192.168.12.28/WebAPIProtoType/Api/';
-  
+  readonly url: string = 'http://192.168.12.28/WebAPIProtoType/Api/';
+  public SESSION_ID: string = ""
 
-  constructor(public http: Http) {
+  constructor(public http: Http, public storage: Storage, public toast: Toast) {
+
+  }
+
+  createAuthorizationHeader(headers: Headers) {
+    //debugger
+    //TODO: implement storage for session storage? check with Rizk.
+    // this.storage.get('SESSION_ID').then((v) => {
+    //   headers.append('SESSION_ID', v);
+    // })
+    headers.append('SESSION_ID', this.SESSION_ID);
 
   }
 
@@ -20,7 +32,9 @@ export class Api {
     if (!options) {
       options = new RequestOptions();
     }
-
+    let headers = new Headers();
+    this.createAuthorizationHeader(headers);
+    options.headers = headers;
     // Support easy query params for GET requests
     if (params) {
       let p = new URLSearchParams();
@@ -32,15 +46,34 @@ export class Api {
       options.search = !options.search && p || options.search;
     }
 
-    return this.http.get(this.url + '/' + endpoint, options).catch(err => Observable.throw(err));;
+    return this.http.get(this.url + '/' + endpoint, options).catch(err => {
+      this.toast.show(err.message, '5000', 'center').subscribe(
+        toast => {console.log(toast);}
+      );
+      return Observable.throw(err) 
+    });
   }
 
   post(endpoint: string, body: any, options?: RequestOptions) {
-    return this.http.post(this.url + '/' + endpoint, body, options).catch(err => Observable.throw(err));
+    let headers = new Headers();
+    this.createAuthorizationHeader(headers);
+    if (!options) {
+      options = new RequestOptions();
+    }
+    options.headers = headers;
+
+    return this.http.post(this.url + '/' + endpoint, body, options).catch(err => {
+      this.toast.show('I\'m a toast', '5000', 'center').subscribe(
+        toast => {console.log(toast);}
+      );
+      return Observable.throw(err)
+    });
   }
 
   put(endpoint: string, body: any, options?: RequestOptions) {
-    return this.http.put(this.url + '/' + endpoint, body, options).catch(err => Observable.throw(err));
+    return this.http.put(this.url + '/' + endpoint, body, options).catch(err => {
+      return Observable.throw(err);
+    });
   }
 
   delete(endpoint: string, options?: RequestOptions) {

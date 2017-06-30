@@ -1,24 +1,23 @@
 import { MockPolicy } from './mocks/mock-policy-details';
+import { Injectable, Inject } from '@angular/core';
 import { AppConfig, APP_CONFIG, ApplicationMode } from './../app/app.config';
 import { MockPortfolio } from './mocks/mock-portfolio';
 import { Policy } from './../models/policy.model';
 import { Portfolio } from './../models/portfolio.model';
 import { Observable } from 'rxjs/Observable';
 import { Api } from './api.service';
-import { Injectable, Inject } from '@angular/core';
 import { BehaviorSubject } from "rxjs/BehaviorSubject";
 
 @Injectable()
 export class PortflioService {
     private endPoint: string = 'Polcom';
     private Lst_Porfolio: BehaviorSubject<Portfolio[]> = new BehaviorSubject<Portfolio[]>([]);
-    private appconfig: AppConfig;
 
     public portfolio$: Observable<Portfolio[]> = this.Lst_Porfolio.asObservable();
 
     constructor(public api: Api,
-        @Inject(APP_CONFIG) config: AppConfig) {
-        this.appconfig = config;
+        @Inject(APP_CONFIG) public appconfig: AppConfig) {
+
     }
 
     getPortfolio(): Observable<Portfolio[]> {
@@ -27,9 +26,11 @@ export class PortflioService {
             this.api.get(this.endPoint + '/Get_Portfolio')
                 .map(res => res.json())
                 .subscribe(lst => {
+                    console.log(lst)
                     let Lst_Tmp: Portfolio[] = [];
                     lst.forEach(port => { Lst_Tmp.push(new Portfolio(port)); });
                     this.Lst_Porfolio.next(Lst_Tmp);
+                    console.log(this.Lst_Porfolio.getValue())
                 }, err => {
                     err => Observable.throw(err)
                 })

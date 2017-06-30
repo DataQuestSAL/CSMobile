@@ -1,0 +1,7 @@
+page-policy-tabs {
+    //TODO: Find solution to hidden tabs, this is a hack
+    //see https://github.com/ionic-team/ionic/issues/10632
+    .tabbar {
+        opacity: 1;
+    }
+}

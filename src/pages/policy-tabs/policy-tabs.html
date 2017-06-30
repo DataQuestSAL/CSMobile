@@ -1,0 +1,10 @@
+  <ion-header>
+    <ion-navbar>
+
+    </ion-navbar>
+  </ion-header>
+  <ion-tabs tabsPlacement="top">
+    <ion-tab *ngFor="let t of PolicyTabs" tabTitle="{{t.desc}}" [root]="t.rootPage" [rootParams]="t.params"></ion-tab>
+  </ion-tabs>
+
+  <!---->

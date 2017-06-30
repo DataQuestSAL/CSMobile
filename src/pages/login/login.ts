@@ -33,12 +33,10 @@ export class LoginPage {
       if (data.Is_Authentic == true) {
         this.navCtrl.setRoot(HomePage);
       }
-    },
+    },      
       err => {
-        console.log(err)
-      },
-      () => {
         loading.dismiss();
+        console.log(err)
       });
   }
 

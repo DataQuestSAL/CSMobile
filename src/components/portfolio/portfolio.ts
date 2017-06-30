@@ -1,5 +1,5 @@
+import { PolicyTabsPage } from './../../pages/policy-tabs/policy-tabs';
 import { PolicyActionsComponent } from './../policy-actions/policy-actions';
-import { PolicyDetailsComponent } from './../policy-details/policy-details';
 import { NavController, PopoverController, NavOptions } from 'ionic-angular';
 import { Portfolio } from './../../models/portfolio.model';
 import { Component, Input } from '@angular/core';
@@ -30,7 +30,7 @@ export class PortfolioComponent {
     debugger;
     let popover = this.popoverCtrl.create(PolicyActionsComponent, {
       viewDetails: () => {
-        this.NavCtrl.push(PolicyDetailsComponent, { "Pol_serno": policy.Pol_serno })
+        this.NavCtrl.push(PolicyTabsPage, { "Pol_serno": policy.Pol_serno, "Tabs": policy.Tabs })
       }
     });
 

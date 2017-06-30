@@ -1,14 +1,17 @@
-import { KeysPipe } from './../pipes/pipe.keys';
-import { APP_DI_CONFIG, APP_CONFIG } from './app.config';
-import { Api } from './../providers/api.service';
-import { PortflioService } from './../providers/portfolio.service';
+import { Toast } from '@ionic-native/toast';
+import { PolicyTabsPage } from './../pages/policy-tabs/policy-tabs';
+
+
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
-import { HttpModule } from '@angular/http'; 
+import { HttpModule } from '@angular/http';
+import { IonicStorageModule } from '@ionic/storage'
 
+import { APP_DI_CONFIG, APP_CONFIG } from './app.config';
+import { Api } from './../providers/api.service';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { PortfolioComponent } from '../components/portfolio/portfolio';
@@ -16,21 +19,26 @@ import { LoginPage } from "../pages/login/login";
 import { LoginService } from "../providers/login.service";
 import { PolicyDetailsComponent } from '../components/policy-details/policy-details';
 import { PolicyActionsComponent } from '../components/policy-actions/policy-actions';
+import { PortflioService } from './../providers/portfolio.service';
+import { KeysPipe } from './../pipes/pipe.keys';
+
 
 @NgModule({
-  declarations: [    
+  declarations: [
     MyApp,
     HomePage,
     LoginPage,
     PortfolioComponent,
     PolicyDetailsComponent,
     PolicyActionsComponent,
-    KeysPipe
+    KeysPipe,
+    PolicyTabsPage
   ],
   imports: [
     BrowserModule,
     HttpModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    IonicStorageModule.forRoot()       
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -38,16 +46,18 @@ import { PolicyActionsComponent } from '../components/policy-actions/policy-acti
     HomePage,
     LoginPage,
     PolicyDetailsComponent,
-    PolicyActionsComponent
+    PolicyActionsComponent,
+    PolicyTabsPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    PortflioService,
     LoginService,
     Api,
-    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    { provide: ErrorHandler, useClass: IonicErrorHandler },
+    Toast,
+    PortflioService,
     { provide: APP_CONFIG, useValue: APP_DI_CONFIG }
   ]
 })
-export class AppModule {}
+export class AppModule { }

@@ -1,48 +1,33 @@
+import { Component } from '@angular/core';
 export class Portfolio {
 
     constructor(private fields: any) {
         // Quick and dirty extend/assign fields to this model
         for (let f in fields) {
-            this[f] = fields[f];
+            if (f == 'Tabs') {
+                debugger;
+                this.Tabs.push(new PolicyTab('DETAILS','Policy Details'));
+                fields[f].split('^').forEach(element => {
+                    this.Tabs.push(new PolicyTab(element.split('-')[0],element.split('-')[1]));
+                });
+            } else {
+                this[f] = fields[f];
+            }
         }
     }
-
     
-    private _Pol_serno : string;
-    public get Pol_serno() : string {
-        return this._Pol_serno;
-    }
-    public set Pol_serno(v : string) {
-        this._Pol_serno = v;
-    }
-    
+    public Pol_serno : string;
+    public PolicyType: string;
+    public PolicyNo: string;
+    public HolderName: string;
+    public Tabs: PolicyTab[] = [];
+}
 
-    private _PolicyType: string;
-    public get PolicyType(): string {
-        return this._PolicyType;
+export class PolicyTab {
+    constructor(public code: string, 
+                public desc: string,
+                public rootPage?: Component,
+                public params?: any) {
+        
     }
-    public set PolicyType(v: string) {
-        this._PolicyType = v;
-    }
-
-
-
-    private _PolicyNo: string;
-    public get PolicyNo(): string {
-        return this._PolicyNo;
-    }
-    public set PolicyNo(v: string) {
-        this._PolicyNo = v;
-    }
-
-
-    private _HolderName: string;
-    public get HolderName(): string {
-        return this._HolderName;
-    }
-    public set HolderName(v: string) {
-        this._HolderName = v;
-    }
-
-
 }

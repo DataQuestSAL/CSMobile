@@ -1,7 +1,5 @@
-import { PolicyDetailsComponent } from './../policy-details/policy-details';
-import { NavController, NavParams, ViewController } from 'ionic-angular';
-import { Portfolio } from './../../models/portfolio.model';
-import { Component, Input } from '@angular/core';
+import {  NavParams, ViewController } from 'ionic-angular';
+import { Component} from '@angular/core';
 
 /**
  * Generated class for the PolicyActionsComponent component.
@@ -22,7 +20,6 @@ export class PolicyActionsComponent {
   }
 
   viewDetails() {
-    debugger;
     this.ViewCtrl.dismiss()
     this.NavParams.get("viewDetails")();
   }

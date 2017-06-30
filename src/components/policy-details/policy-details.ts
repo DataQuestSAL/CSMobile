@@ -1,4 +1,3 @@
-import { KeysPipe } from './../../pipes/pipe.keys';
 import { NavParams } from 'ionic-angular';
 import { PortflioService } from './../../providers/portfolio.service';
 import { Observable } from 'rxjs/Observable';
@@ -19,15 +18,14 @@ export class PolicyDetailsComponent {
   Pol_Serno: number;
   currentPolicy$: Observable<Policy>;
 
+
   constructor(public PortSvc: PortflioService,
               private navParams: NavParams) {
   }
 
   ngOnInit() {
-    debugger;
     this.currentPolicy$ = this.PortSvc.getPolicyDetails(this.navParams.get("Pol_serno"));
-
-    this.currentPolicy$.subscribe(() => {},
+    this.currentPolicy$.subscribe((data) => {console.log(data)},
                         err => {console.log(err)});
   }
 

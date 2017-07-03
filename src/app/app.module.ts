@@ -1,3 +1,4 @@
+import { HighlightPipe } from './../pipes/highlight.keys';
 import { Toast } from '@ionic-native/toast';
 import { PolicyTabsPage } from './../pages/policy-tabs/policy-tabs';
 
@@ -33,6 +34,7 @@ import { PortfolioItemComponent } from '../components/portfolio-item/portfolio-i
     PolicyDetailsComponent,
     PolicyActionsComponent,
     KeysPipe,
+    HighlightPipe,
     PolicyTabsPage,
     PortfolioItemComponent,
     PortfolioItemComponent

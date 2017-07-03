@@ -12,13 +12,14 @@ import { BehaviorSubject } from "rxjs/BehaviorSubject";
 export class PortflioService {
     private endPoint: string = 'Polcom';
     private Lst_Porfolio: BehaviorSubject<Portfolio[]> = new BehaviorSubject<Portfolio[]>([]);
-
+    
     public portfolio$: Observable<Portfolio[]> = this.Lst_Porfolio.asObservable();
 
     constructor(public api: Api,
         @Inject(APP_CONFIG) public appconfig: AppConfig) {
-
     }
+
+    
 
     getPortfolio(): Observable<Portfolio[]> {
         debugger
@@ -39,6 +40,16 @@ export class PortflioService {
             this.Lst_Porfolio.next(MockPortfolio)
         }
         return this.portfolio$;
+    }
+
+    searchPortfolio(searchTerm: string): Portfolio[] {
+        if(searchTerm !== "")
+            return this.Lst_Porfolio.getValue().filter(p =>  
+                (p.HolderName.toLowerCase().indexOf(searchTerm) >= 0 || 
+                 p.PolicyNo.indexOf(searchTerm) >= 0 )
+            )
+        else
+            return this.Lst_Porfolio.getValue();
     }
 
     getPolicyDetails(Pol_serno: number): Observable<Policy> {

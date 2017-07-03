@@ -17,6 +17,9 @@ import { Component, Input } from '@angular/core';
 export class PortfolioComponent {
   @Input()
   policies: Portfolio[];
+  
+  @Input()
+  filterTerm: string;
 
   constructor(public popoverCtrl: PopoverController,
               public NavCtrl: NavController) {

@@ -1,4 +1,4 @@
-<div class="div_portolio_entry">
+<!--<div class="div_portolio_entry">
   <div class="div_portolio_entry_holdername">
     {{portfolioItem.HolderName}}
   </div>
@@ -10,4 +10,22 @@
           <ion-icon name="arrow-dropdown"></ion-icon>
         </button>
   </div>
-</div>
+</div>-->
+<ion-card>
+
+  <ion-card-content>
+    <ion-row>
+      <ion-col col-10>
+        <ion-card-header>
+          <h2 [innerHTML]="portfolioItem.HolderName | highlight : filterTerm"></h2>
+        </ion-card-header>
+        <h3 [innerHTML]="portfolioItem.PolicyType + ' - ' + portfolioItem.PolicyNo | highlight : filterTerm"></h3>
+      </ion-col>
+      <ion-col col-2>
+        <button item-end ion-button icon-only item-end (click)="presentPopover($event, portfolioItem)">
+          <ion-icon name="arrow-dropdown"></ion-icon>
+        </button>
+      </ion-col>
+    </ion-row>
+  </ion-card-content>
+</ion-card>

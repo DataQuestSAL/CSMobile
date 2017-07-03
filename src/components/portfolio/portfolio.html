@@ -1,20 +1,5 @@
 <ion-list *ngIf="policies else loadingTemplate">
-  <ion-item *ngFor="let item of policies">
-    <!--<div class="div_portolio_entry" > (click)='handleClick(item)'
-      <div class="div_portolio_entry_holdername">
-        {{item.HolderName}}
-      </div>
-      <div class="div_portolio_entry_policyno">
-        {{item.PolicyType + ' - ' + item.PolicyNo}}
-      </div>
-      <div class="div_portolio_entry_action">
-        <button ion-button icon-only (click)="presentPopover($event, item)" >
-          <ion-icon name="arrow-dropdown"></ion-icon>
-        </button>        
-      </div>
-    </div>-->
-    <portfolio-item [portfolioItem]="item" (itemClick)="presentPopover($event.event, $event.item)"></portfolio-item>
-  </ion-item>
+  <portfolio-item *ngFor="let item of policies" [filterTerm]="filterTerm" [portfolioItem]="item" (itemClick)="presentPopover($event.event, $event.item)"></portfolio-item>  
 </ion-list>
 
 <ng-template #loadingTemplate>

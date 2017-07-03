@@ -16,6 +16,9 @@ export class PortfolioItemComponent {
   @Input()
   portfolioItem: Portfolio;
 
+  @Input()
+  filterTerm: string;
+
   @Output()
   itemClick: EventEmitter<any> = new EventEmitter<any>();
 

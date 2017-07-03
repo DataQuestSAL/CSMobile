@@ -5,7 +5,6 @@ export class Portfolio {
         // Quick and dirty extend/assign fields to this model
         for (let f in fields) {
             if (f == 'Tabs') {
-                debugger;
                 this.Tabs.push(new PolicyTab('DETAILS','Policy Details'));
                 fields[f].split('^').forEach(element => {
                     this.Tabs.push(new PolicyTab(element.split('-')[0],element.split('-')[1]));

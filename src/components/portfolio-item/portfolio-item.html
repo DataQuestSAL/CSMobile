@@ -1,0 +1,13 @@
+<div class="div_portolio_entry">
+  <div class="div_portolio_entry_holdername">
+    {{portfolioItem.HolderName}}
+  </div>
+  <div class="div_portolio_entry_policyno">
+    {{portfolioItem.PolicyType + ' - ' + portfolioItem.PolicyNo}}
+  </div>
+  <div class="div_portolio_entry_action">
+    <button ion-button icon-only (click)="presentPopover($event, portfolioItem)">
+          <ion-icon name="arrow-dropdown"></ion-icon>
+        </button>
+  </div>
+</div>

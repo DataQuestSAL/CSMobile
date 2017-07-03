@@ -1,5 +1,5 @@
 
-import { InjectionToken, Component } from '@angular/core';
+import { InjectionToken } from '@angular/core';
 //import { PolicyDetailsComponent } from './../components/policy-details/policy-details';
 
 export enum ApplicationMode {
@@ -14,7 +14,7 @@ export interface AppConfig {
 
 export const APP_DI_CONFIG: AppConfig = {
     //Set to offline when server API not accessible
-    __APPLICATION_MODE: ApplicationMode.ONLINE,
+    __APPLICATION_MODE: ApplicationMode.OFFLINE,
 
 }
 

@@ -19,7 +19,7 @@ export class PolicyTabsPage {
   testRootPage: PolicyDetailsComponent;
 
   __POLICY_TABS_MAP = [
-    { tabCode: "DETAILS", component: PolicyDetailsComponent, params: {"Pol_serno" : this.navParams.get("Pol_serno") } },
+    { tabCode: "DETAILS", icon: "paper", component: PolicyDetailsComponent, params: {"Pol_serno" : this.navParams.get("Pol_serno") } },
     { tabCode: "REGPLAN", component: null, params: null },
     { tabCode: "BNF", component: null, params: null },
     { tabCode: "SOP", component: null, params: null },

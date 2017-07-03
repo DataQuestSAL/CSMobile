@@ -21,6 +21,7 @@ import { PolicyDetailsComponent } from '../components/policy-details/policy-deta
 import { PolicyActionsComponent } from '../components/policy-actions/policy-actions';
 import { PortflioService } from './../providers/portfolio.service';
 import { KeysPipe } from './../pipes/pipe.keys';
+import { PortfolioItemComponent } from '../components/portfolio-item/portfolio-item';
 
 
 @NgModule({
@@ -32,7 +33,9 @@ import { KeysPipe } from './../pipes/pipe.keys';
     PolicyDetailsComponent,
     PolicyActionsComponent,
     KeysPipe,
-    PolicyTabsPage
+    PolicyTabsPage,
+    PortfolioItemComponent,
+    PortfolioItemComponent
   ],
   imports: [
     BrowserModule,

@@ -1,16 +1,27 @@
 <ion-header>
   <ion-navbar>
+    <ion-title>
+      {{selectedTab?.desc}}
+    </ion-title>
     <ion-buttons end>
-
       <button ion-button icon-only>
         <ion-icon  name="person"></ion-icon>
         </button>
     </ion-buttons>
-
   </ion-navbar>
 </ion-header>
-<ion-tabs tabsPlacement="top">
-  <ion-tab *ngFor="let t of PolicyTabs" tabTitle="{{t.desc}}" [root]="t.rootPage" [rootParams]="t.params"></ion-tab>
-</ion-tabs>
 
-<!---->
+<ion-tabs tabsPlacement="top">
+      <ion-tab *ngFor="let t of PolicyTabs; let i = index" [tabIcon]="t.icon" [root]="t.rootPage" [rootParams]="t.params" (ionSelect)="selectTab(t)"></ion-tab>
+  </ion-tabs>
+
+
+
+<!--
+  <ion-content>
+  <ion-scroll scrollY="true">
+    <div *ngFor="let t of PolicyTabs" class="div_menu_entry"></div>
+  </ion-scroll>
+  </ion-content>
+
+-->

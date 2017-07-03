@@ -3,11 +3,12 @@
     <ion-title>
       Portfolio
     </ion-title>
+    <ion-searchbar #searchControl (keyup)="addTerm(searchControl.value)" [(ngModel)]="searchTerms.value" (ionClear)="searchTerms.next('')" [showCancelButton]="searchTerms.value != ''" (ionCancel)="searchTerms.next('')">
+  </ion-searchbar>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  <ion-searchbar #searchControl (keyup)="addTerm(searchControl.value)" [(ngModel)]="searchTerms.value" (ionClear)="searchTerms.next('')" [showCancelButton]="searchTerms.value != ''" (ionCancel)="searchTerms.next('')">
-  </ion-searchbar>
+  
   <portfolio [policies]="(items$ | async)" [filterTerm]="searchControl.value" ></portfolio>
 </ion-content>

@@ -25,6 +25,7 @@ export class Portfolio {
 export class PolicyTab {
     constructor(public code: string, 
                 public desc: string,
+                public icon?: string,
                 public rootPage?: Component,
                 public params?: any) {
         

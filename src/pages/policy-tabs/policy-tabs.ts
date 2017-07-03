@@ -17,24 +17,27 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 export class PolicyTabsPage {
   PolicyTabs: PolicyTab[];
   testRootPage: PolicyDetailsComponent;
+  selectedTab: PolicyTab;
 
   __POLICY_TABS_MAP = [
     { tabCode: "DETAILS", icon: "paper", component: PolicyDetailsComponent, params: {"Pol_serno" : this.navParams.get("Pol_serno") } },
-    { tabCode: "REGPLAN", component: null, params: null },
-    { tabCode: "BNF", component: null, params: null },
-    { tabCode: "SOP", component: null, params: null },
-    { tabCode: "CONTRIBUTIONS", component: null, params: null },
-
+    { tabCode: "REGPLAN", icon: "checkmark-circle", component: null, params: null },
+    { tabCode: "BNF", icon: "people", component: null, params: null },
+    { tabCode: "SOP", icon: "cash", component: null, params: null },
+    { tabCode: "CONTRIBUTIONS", icon: "logo-usd", component: null, params: null },
+    { tabCode: "ADDRESS", icon: "home", component: null, params: null },
   ]
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams) {
 
+                
     this.PolicyTabs = this.navParams.get("Tabs");
     this.PolicyTabs.forEach(t => {
       var tabNode = this.__POLICY_TABS_MAP.find((tab) => tab.tabCode == t.code)
       t.rootPage = (tabNode ? tabNode.component : null);
       t.params = (tabNode ? tabNode.params : null);
+      t.icon = (tabNode ? tabNode.icon : null);
     })
   }
 
@@ -45,6 +48,11 @@ export class PolicyTabsPage {
   ngOnInit() {
 
 
+  }
+
+  selectTab(t: PolicyTab) {
+    console.log(t);
+    this.selectedTab = t;
   }
 
 }

@@ -1,24 +1,8 @@
-<!--<div class="div_portolio_entry">
-  <div class="div_portolio_entry_holdername">
-    {{portfolioItem.HolderName}}
-  </div>
-  <div class="div_portolio_entry_policyno">
-    {{portfolioItem.PolicyType + ' - ' + portfolioItem.PolicyNo}}
-  </div>
-  <div class="div_portolio_entry_action">
-    <button ion-button icon-only (click)="presentPopover($event, portfolioItem)">
-          <ion-icon name="arrow-dropdown"></ion-icon>
-        </button>
-  </div>
-</div>-->
 <ion-card>
-
   <ion-card-content>
     <ion-row>
       <ion-col col-10>
-        <ion-card-header>
-          <h2 [innerHTML]="portfolioItem.HolderName | highlight : filterTerm"></h2>
-        </ion-card-header>
+        <h2 [innerHTML]="portfolioItem.HolderName | highlight : filterTerm"></h2>
         <h3 [innerHTML]="portfolioItem.PolicyType + ' - ' + portfolioItem.PolicyNo | highlight : filterTerm"></h3>
       </ion-col>
       <ion-col col-2>

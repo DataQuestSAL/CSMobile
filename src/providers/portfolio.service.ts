@@ -45,7 +45,7 @@ export class PortflioService {
     searchPortfolio(searchTerm: string): Portfolio[] {
         if(searchTerm !== "")
             return this.Lst_Porfolio.getValue().filter(p =>  
-                (p.HolderName.toLowerCase().indexOf(searchTerm) >= 0 || 
+                (p.HolderName.toLowerCase().indexOf(searchTerm.toLowerCase()) >= 0 || 
                  p.PolicyNo.indexOf(searchTerm) >= 0 )
             )
         else

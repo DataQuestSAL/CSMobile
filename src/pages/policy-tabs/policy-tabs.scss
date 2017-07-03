@@ -4,4 +4,24 @@ page-policy-tabs {
     .tabbar {
         opacity: 1;
     }
+
+    .div_menu_entries
+    {
+      height: 100px;
+     
+    }
+    
+    .div_menu_entry
+    {
+        width:70px;
+        height:70px;
+        border-radius: 50%;
+        border:1px solid red !important;
+        display: inline-block;
+        background-color: blue;
+        z-index: 100;
+        vertical-align: top;
+        margin:5px;
+    }
+
 }

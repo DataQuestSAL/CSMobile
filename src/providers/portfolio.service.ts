@@ -12,8 +12,10 @@ import { BehaviorSubject } from "rxjs/BehaviorSubject";
 export class PortflioService {
     private endPoint: string = 'Polcom';
     private Lst_Porfolio: BehaviorSubject<Portfolio[]> = new BehaviorSubject<Portfolio[]>([]);
-    
+    private CurrentPolicy: BehaviorSubject<Policy> = new BehaviorSubject<Policy>(null);
+
     public portfolio$: Observable<Portfolio[]> = this.Lst_Porfolio.asObservable();
+    public currentPolicy$: Observable<Policy> = this.CurrentPolicy.asObservable();
 
     constructor(public api: Api,
         @Inject(APP_CONFIG) public appconfig: AppConfig) {
@@ -22,7 +24,6 @@ export class PortflioService {
     
 
     getPortfolio(): Observable<Portfolio[]> {
-        debugger
         if (this.appconfig.__APPLICATION_MODE == ApplicationMode.ONLINE) {
             this.api.get(this.endPoint + '/Get_Portfolio')
                 .map(res => res.json())
@@ -60,10 +61,14 @@ export class PortflioService {
                     "ROLEID": "I"
                 })
                 .map(res => res.json())
+                .do(pol => { 
+                    debugger;
+                    return this.CurrentPolicy.next(pol) 
+                })
                 .publishLast().refCount();
         } else {
-            return Observable.of(MockPolicy);
+            this.CurrentPolicy.next(MockPolicy);
+            return this.currentPolicy$;
         }
-
     }
 }

@@ -1,0 +1,15 @@
+<ion-list>
+  <ion-list-header>Agent Info</ion-list-header>
+  <ion-item>
+    <ion-icon name="information-circle" item-start></ion-icon>
+      {{Agt.Agt_code}}
+  </ion-item>
+  <ion-item (click)="callAgent()">
+    <ion-icon name="call" item-start></ion-icon>
+      {{Agt.Agt_Phone}}
+  </ion-item>
+  <ion-item (click)="emailAgent()">
+    <ion-icon name="mail" item-start></ion-icon>
+      {{Agt.Agt_Email}}
+  </ion-item>
+</ion-list>

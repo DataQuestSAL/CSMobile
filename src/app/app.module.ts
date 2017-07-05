@@ -1,3 +1,5 @@
+import { EmailComposer } from '@ionic-native/email-composer';
+import { CallNumber } from '@ionic-native/call-number';
 import { HighlightPipe } from './../pipes/highlight.keys';
 import { Toast } from '@ionic-native/toast';
 import { PolicyTabsPage } from './../pages/policy-tabs/policy-tabs';
@@ -23,6 +25,8 @@ import { PolicyActionsComponent } from '../components/policy-actions/policy-acti
 import { PortflioService } from './../providers/portfolio.service';
 import { KeysPipe } from './../pipes/pipe.keys';
 import { PortfolioItemComponent } from '../components/portfolio-item/portfolio-item';
+import { AgentInfoComponent } from '../components/agent-info/agent-info';
+import { CoversComponent } from '../components/covers/covers';
 
 
 @NgModule({
@@ -37,7 +41,9 @@ import { PortfolioItemComponent } from '../components/portfolio-item/portfolio-i
     HighlightPipe,
     PolicyTabsPage,
     PortfolioItemComponent,
-    PortfolioItemComponent
+    PortfolioItemComponent,
+    AgentInfoComponent,
+    CoversComponent
   ],
   imports: [
     BrowserModule,
@@ -52,6 +58,8 @@ import { PortfolioItemComponent } from '../components/portfolio-item/portfolio-i
     LoginPage,
     PolicyDetailsComponent,
     PolicyActionsComponent,
+    AgentInfoComponent,
+    CoversComponent,
     PolicyTabsPage
   ],
   providers: [
@@ -62,7 +70,9 @@ import { PortfolioItemComponent } from '../components/portfolio-item/portfolio-i
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     Toast,
     PortflioService,
-    { provide: APP_CONFIG, useValue: APP_DI_CONFIG }
+    { provide: APP_CONFIG, useValue: APP_DI_CONFIG },
+    CallNumber,
+    EmailComposer
   ]
 })
 export class AppModule { }

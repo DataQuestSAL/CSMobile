@@ -2,7 +2,7 @@ import { NavParams } from 'ionic-angular';
 import { PortflioService } from './../../providers/portfolio.service';
 import { Observable } from 'rxjs/Observable';
 import { Policy } from './../../models/policy.model';
-import { Component } from '@angular/core';
+import { Component, Output } from '@angular/core';
 /**
  * Generated class for the PolicyDetailsComponent component.
  *
@@ -16,6 +16,8 @@ import { Component } from '@angular/core';
 export class PolicyDetailsComponent {
 
   Pol_Serno: number;
+
+  @Output()
   currentPolicy$: Observable<Policy>;
 
 

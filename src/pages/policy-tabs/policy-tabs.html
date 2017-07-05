@@ -3,8 +3,8 @@
     <ion-title>
       {{selectedTab?.desc}}
     </ion-title>
-    <ion-buttons end>
-      <button ion-button icon-only>
+    <ion-buttons end *ngIf="(currentPolicy$ | async) as currentPol">
+      <button ion-button icon-only (click)="presentPopover($event, currentPol.Agent )">
         <ion-icon  name="person"></ion-icon>
         </button>
     </ion-buttons>
@@ -12,8 +12,8 @@
 </ion-header>
 
 <ion-tabs tabsPlacement="top">
-      <ion-tab *ngFor="let t of PolicyTabs; let i = index" [tabIcon]="t.icon" [root]="t.rootPage" [rootParams]="t.params" (ionSelect)="selectTab(t)"></ion-tab>
-  </ion-tabs>
+  <ion-tab *ngFor="let t of PolicyTabs; let i = index" [tabIcon]="t.icon" [root]="t.rootPage" [rootParams]="t.params" (ionSelect)="selectTab(t)"></ion-tab>
+</ion-tabs>
 
 
 

@@ -7,7 +7,7 @@
 <ion-content>
   <ion-list *ngIf="(currentPolicy$ | async) as pol else loading">
     <ion-card>
-
+      <!-- TODO:  -->
       <ion-item *ngFor="let c of pol | keys">
         <ion-label>{{c}} - {{pol[c]}}</ion-label>
       </ion-item>

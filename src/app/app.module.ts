@@ -1,6 +1,6 @@
 import { EmailComposer } from '@ionic-native/email-composer';
 import { CallNumber } from '@ionic-native/call-number';
-import { HighlightPipe } from './../pipes/highlight.keys';
+import { HighlightPipe } from './../pipes/pipe.highlight';
 import { Toast } from '@ionic-native/toast';
 import { PolicyTabsPage } from './../pages/policy-tabs/policy-tabs';
 

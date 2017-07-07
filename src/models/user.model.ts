@@ -11,4 +11,6 @@ export class User {
     public PASSWORD: string;
     public Is_Authentic: boolean;
     public SESSION_ID: string;
+
+    public DisplayName: string;
 }

@@ -1,8 +1,12 @@
+import { PortflioService } from './../../providers/portfolio.service';
+import { Observable } from 'rxjs/Observable';
+import { BehaviorSubject } from 'rxjs';
 import { PolicyTabsPage } from './../../pages/policy-tabs/policy-tabs';
 import { PolicyActionsComponent } from './../policy-actions/policy-actions';
 import { NavController, PopoverController, NavOptions } from 'ionic-angular';
 import { Portfolio } from './../../models/portfolio.model';
 import { Component, Input } from '@angular/core';
+import { FormControl } from "@angular/forms/forms";
 
 /**
  * Generated class for the PortfolioComponent component.
@@ -15,17 +19,39 @@ import { Component, Input } from '@angular/core';
   templateUrl: 'portfolio.html'
 })
 export class PortfolioComponent {
-  @Input()
-  policies: Portfolio[];
-  
-  @Input()
-  filterTerm: string;
+  // @Input()
+  // policies: Portfolio[];
+
+  // @Input()
+  // filterTerm: string;
+
+  //public items : Portfolio[] = [];
+  searchTerms = new BehaviorSubject<string>('');
+  searchControl: FormControl;
+  items$: Observable<Portfolio[]>;
+
 
   constructor(public popoverCtrl: PopoverController,
-              public NavCtrl: NavController) {
+    public NavCtrl: NavController , public portfolioSvc: PortflioService) {
   }
 
   handleClick(policy: Portfolio) {
+
+  }
+
+  addTerm(newTerm: string) {
+    this.searchTerms.next(newTerm);
+  }
+
+
+  ngOnInit() {
+    this.items$ = this.portfolioSvc.getPortfolio()
+                  .merge(
+                    this.searchTerms.debounceTime(200).distinctUntilChanged()
+                    .flatMap(term => Observable.of(this.portfolioSvc.searchPortfolio(this.searchTerms.getValue())))
+                  );
+
+    //this.items$ = 
 
   }
 

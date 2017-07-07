@@ -1,9 +1,26 @@
-<ion-list *ngIf="policies else loadingTemplate">
-  <portfolio-item *ngFor="let item of policies" [filterTerm]="filterTerm" [portfolioItem]="item" (itemClick)="presentPopover($event.event, $event.item)"></portfolio-item>  
-</ion-list>
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle left>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Portfolio</ion-title>    
+  </ion-navbar>
+</ion-header>
 
-<ng-template #loadingTemplate>
-  <ion-item text-center>
-    <ion-spinner></ion-spinner>Loading...
-  </ion-item>
-</ng-template>
+
+<ion-content padding>
+  <ion-searchbar #searchControl (keyup)="addTerm(searchControl.value)" [(ngModel)]="searchTerms.value" (ionClear)="searchTerms.next('')"
+      [showCancelButton]="searchTerms.value != ''" (ionCancel)="searchTerms.next('')">
+    </ion-searchbar>
+
+  <ion-list *ngIf="(items$ | async ) as policies else loadingTemplate">
+    <portfolio-item *ngFor="let item of policies" [filterTerm]="searchTerms.value" [portfolioItem]="item" (itemClick)="presentPopover($event.event, $event.item)"></portfolio-item>
+  </ion-list>
+
+  <ng-template #loadingTemplate>
+    <ion-item text-center>
+      <ion-spinner></ion-spinner>Loading...
+    </ion-item>
+  </ng-template>
+
+</ion-content>

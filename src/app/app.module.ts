@@ -1,3 +1,4 @@
+import { ClaimsPage } from './../pages/claims/claims';
 import { EmailComposer } from '@ionic-native/email-composer';
 import { CallNumber } from '@ionic-native/call-number';
 import { HighlightPipe } from './../pipes/pipe.highlight';
@@ -34,13 +35,13 @@ import { CoversComponent } from '../components/covers/covers';
     MyApp,
     HomePage,
     LoginPage,
+    ClaimsPage,
     PortfolioComponent,
     PolicyDetailsComponent,
     PolicyActionsComponent,
     KeysPipe,
     HighlightPipe,
     PolicyTabsPage,
-    PortfolioItemComponent,
     PortfolioItemComponent,
     AgentInfoComponent,
     CoversComponent
@@ -56,9 +57,11 @@ import { CoversComponent } from '../components/covers/covers';
     MyApp,
     HomePage,
     LoginPage,
+    ClaimsPage,
     PolicyDetailsComponent,
     PolicyActionsComponent,
-    AgentInfoComponent,
+    PortfolioComponent,
+    AgentInfoComponent,    
     CoversComponent,
     PolicyTabsPage
   ],

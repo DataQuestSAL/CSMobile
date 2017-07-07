@@ -2,10 +2,7 @@
 import { InjectionToken } from '@angular/core';
 //import { PolicyDetailsComponent } from './../components/policy-details/policy-details';
 
-export enum ApplicationMode {
-    ONLINE = 1,
-    OFFLINE = 0
-}
+export enum ApplicationMode { OFFLINE,ONLINE }
 
 export interface AppConfig {
     __APPLICATION_MODE: ApplicationMode;

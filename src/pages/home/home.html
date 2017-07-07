@@ -1,4 +1,4 @@
-<ion-header>
+<!--<ion-header>
   <ion-navbar>
     <ion-title>
       Portfolio
@@ -11,4 +11,33 @@
 <ion-content padding>
   
   <portfolio [policies]="(items$ | async)" [filterTerm]="searchControl.value" ></portfolio>
-</ion-content>
+</ion-content>-->
+
+<ion-menu [content]="content">
+    <ion-header>
+      <ion-item>
+        <ion-avatar item-start>
+          <img style="border-radius: 75%" src="assets/img/avatar.gif">
+        </ion-avatar>
+        <h2>{{loggedInUser?.USER_NAME}}</h2>
+        <p>{{loggedInUser?.DisplayName}}</p>
+        <ion-note item-end>
+          <ion-icon name="log-out" ></ion-icon>
+        </ion-note>
+      </ion-item>
+    </ion-header>
+
+    <ion-content>
+      
+      <ion-list>
+        <button menuClose ion-item *ngFor="let p of pages">
+          {{p.title}}
+        </button>
+      </ion-list>
+    </ion-content>
+
+  </ion-menu>
+<ion-tabs #content>
+  <ion-tab [root]="tab1Root" tabTitle="Portfolio" tabIcon="list"></ion-tab>
+  <ion-tab [root]="tab2Root" tabTitle="Claims" tabIcon="create"></ion-tab>
+</ion-tabs>

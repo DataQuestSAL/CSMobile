@@ -24,6 +24,7 @@ export class PortflioService {
     
 
     getPortfolio(): Observable<Portfolio[]> {
+        debugger
         if (this.appconfig.__APPLICATION_MODE == ApplicationMode.ONLINE) {
             this.api.get(this.endPoint + '/Get_Portfolio')
                 .map(res => res.json())

@@ -7,7 +7,8 @@ import { Injectable, Inject } from '@angular/core';
 import { User } from "../models/user.model";
 
 const UNKNOWN_USER: User = new User({
-    USER_NAME: ""
+    USER_NAME: "",
+    Is_Authentic: false
 })
 
 @Injectable()
@@ -41,6 +42,11 @@ export class LoginService {
             this.userSubject.next(MockUser)
             return this.user$;//this.userSubject.asObservable();
         }
+    }
+
+    logout() {
+        this.userSubject.next(UNKNOWN_USER);
+        this.api.SESSION_ID = '';
     }
 
     get LoggedInUser(): User {

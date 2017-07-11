@@ -63,7 +63,6 @@ export class PortflioService {
                 })
                 .map(res => res.json())
                 .do(pol => { 
-                    debugger;
                     return this.CurrentPolicy.next(pol) 
                 })
                 .publishLast().refCount();

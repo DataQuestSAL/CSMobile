@@ -28,6 +28,7 @@ import { KeysPipe } from './../pipes/pipe.keys';
 import { PortfolioItemComponent } from '../components/portfolio-item/portfolio-item';
 import { AgentInfoComponent } from '../components/agent-info/agent-info';
 import { CoversComponent } from '../components/covers/covers';
+import { ProgressBarComponent } from '../components/_shared/progress-bar/progress-bar';
 
 
 @NgModule({
@@ -44,7 +45,8 @@ import { CoversComponent } from '../components/covers/covers';
     PolicyTabsPage,
     PortfolioItemComponent,
     AgentInfoComponent,
-    CoversComponent
+    CoversComponent,
+    ProgressBarComponent
   ],
   imports: [
     BrowserModule,
@@ -61,7 +63,7 @@ import { CoversComponent } from '../components/covers/covers';
     PolicyDetailsComponent,
     PolicyActionsComponent,
     PortfolioComponent,
-    AgentInfoComponent,    
+    AgentInfoComponent,
     CoversComponent,
     PolicyTabsPage
   ],

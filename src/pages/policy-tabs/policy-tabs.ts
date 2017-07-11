@@ -66,7 +66,6 @@ export class PolicyTabsPage {
   }
 
   presentPopover(event: NavOptions, agt: Agent) {
-    debugger;
     let popover = this.popoverCtrl.create(AgentInfoComponent, {
       Agent: agt
     });

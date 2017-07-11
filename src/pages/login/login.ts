@@ -28,11 +28,8 @@ export class LoginPage {
     loading.present();
 
     this.loginSvc.Authenticate(this.user.USER_NAME, this.user.PASSWORD).subscribe((data) => {
-      //alert(JSON.stringify(data));
       loading.dismiss();
-      if (data.Is_Authentic == true) {
-        this.navCtrl.setRoot(HomePage);
-      }
+      //no need to change the rootNav here, this is handled in the app.component reactively
     },      
       err => {
         loading.dismiss();

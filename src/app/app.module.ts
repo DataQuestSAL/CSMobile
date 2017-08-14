@@ -1,3 +1,5 @@
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { INITIAL_APPLICATION_STATE } from './../store/application-state';
 import { ClaimsPage } from './../pages/claims/claims';
 import { EmailComposer } from '@ionic-native/email-composer';
 import { CallNumber } from '@ionic-native/call-number';
@@ -13,6 +15,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { HttpModule } from '@angular/http';
 import { IonicStorageModule } from '@ionic/storage'
+import {StoreModule, combineReducers} from "@ngrx/store";
 
 import { APP_DI_CONFIG, APP_CONFIG } from './app.config';
 import { Api } from './../providers/api.service';
@@ -29,6 +32,7 @@ import { PortfolioItemComponent } from '../components/portfolio-item/portfolio-i
 import { AgentInfoComponent } from '../components/agent-info/agent-info';
 import { CoversComponent } from '../components/covers/covers';
 import { ProgressBarComponent } from '../components/_shared/progress-bar/progress-bar';
+import { reducer } from "../store/reducer";
 
 
 @NgModule({
@@ -52,7 +56,9 @@ import { ProgressBarComponent } from '../components/_shared/progress-bar/progres
     BrowserModule,
     HttpModule,
     IonicModule.forRoot(MyApp),
-    IonicStorageModule.forRoot()       
+    StoreModule.provideStore(reducer, INITIAL_APPLICATION_STATE),
+    StoreDevtoolsModule.instrumentOnlyWithExtension({ maxAge: 50 }),
+    IonicStorageModule.forRoot()      
   ],
   bootstrap: [IonicApp],
   entryComponents: [

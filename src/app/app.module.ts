@@ -1,3 +1,4 @@
+import { LoginEffects } from './../store/effects/login.effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { INITIAL_APPLICATION_STATE } from './../store/application-state';
 import { ClaimsPage } from './../pages/claims/claims';
@@ -33,6 +34,7 @@ import { AgentInfoComponent } from '../components/agent-info/agent-info';
 import { CoversComponent } from '../components/covers/covers';
 import { ProgressBarComponent } from '../components/_shared/progress-bar/progress-bar';
 import { reducer } from "../store/reducer";
+import { EffectsModule } from "@ngrx/effects";
 
 
 @NgModule({
@@ -56,6 +58,7 @@ import { reducer } from "../store/reducer";
     BrowserModule,
     HttpModule,
     IonicModule.forRoot(MyApp),
+    EffectsModule.run(LoginEffects),
     StoreModule.provideStore(reducer, INITIAL_APPLICATION_STATE),
     StoreDevtoolsModule.instrumentOnlyWithExtension({ maxAge: 50 }),
     IonicStorageModule.forRoot()      

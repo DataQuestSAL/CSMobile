@@ -9,11 +9,7 @@ import * as _ from 'lodash';
 
 export function storeData(state: StoreData, action: Action): StoreData {
     switch (action.type) {
-        case ActionTypes.AUTHENTICATE:
-            debugger;
-            const newState = Object.assign({}, state);
-            newState.user = action.payload;
-            return newState;        
+               
       
         default:
             return state;

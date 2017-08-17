@@ -1,3 +1,4 @@
+import { AuthState, INITIAL_AUTH_STATE } from './auth-state';
 
 import { UiState, INITIAL_UI_STATE } from "./ui-state";
 import { StoreData, INITIAL_STORE_DATA } from "./store-data";
@@ -9,12 +10,14 @@ export interface ApplicationState {
     //router: RouterState,
     uiState: UiState,
     storeData: StoreData
+    authState: AuthState
 }
 
 
 export const INITIAL_APPLICATION_STATE: ApplicationState = {
     uiState: INITIAL_UI_STATE,
     storeData: INITIAL_STORE_DATA,
+    authState: INITIAL_AUTH_STATE    
     // router: {
     //   path: 'home'
     // }

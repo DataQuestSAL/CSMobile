@@ -14,15 +14,3 @@ export function uiState(state: UiState = INITIAL_UI_STATE, action: Action): UiSt
     }
 
 }
-
-
-
-
-
-
-
-
-
-
-
-

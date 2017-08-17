@@ -1,3 +1,6 @@
+import { AuthState } from './../store/auth-state';
+import { ApplicationState } from './../store/application-state';
+import { Store } from '@ngrx/store';
 import { LoginService } from './../providers/login.service';
 import { Component } from '@angular/core';
 import { Platform } from 'ionic-angular';
@@ -15,15 +18,19 @@ export class MyApp {
   constructor(public loginSvc: LoginService,
               platform: Platform,
               statusBar: StatusBar,
-              splashScreen: SplashScreen) {
-
-    loginSvc.user$.subscribe((user) => {
-      if (user.Is_Authentic) {
-        this.rootPage = HomePage
-      } else {
-        this.rootPage = LoginPage
-      }
-    })
+              splashScreen: SplashScreen,
+            private store: Store<ApplicationState>) {
+              debugger;
+              this.store.select('authState')
+              //.publishLast()
+              .subscribe((currentState: AuthState) => { debugger; this.rootPage = (currentState.isLoggedIn? HomePage : LoginPage) })
+    // loginSvc.user$.subscribe((user) => {
+    //   if (user.Is_Authentic) {
+    //     this.rootPage = HomePage
+    //   } else {
+    //     this.rootPage = LoginPage
+    //   }
+    // })
 
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.

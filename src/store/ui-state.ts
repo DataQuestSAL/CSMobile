@@ -1,7 +1,6 @@
 
-
 export interface UiState {
-    userId:number;
+    userId: number;
     currentThreadId: number;
     currentError?: string;
 }

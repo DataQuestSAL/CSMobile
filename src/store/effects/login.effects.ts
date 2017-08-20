@@ -1,4 +1,4 @@
-import { ActionTypes, AuthenticationSuccessAction, AuthenticationErrorAction } from './../actions/users.actions';
+import { ActionTypes, AuthenticationSuccessAction, AuthenticationErrorAction, LogoutSuccessAction } from './../actions/users.actions';
 import { Action } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
 
@@ -18,7 +18,12 @@ export class LoginEffects {
                 .debug("action received")
                 .switchMap(action => this.loginSvc.Authenticate(action.payload.username, action.payload.password))
                 .debug("data received via the HTTP request")
-                .map(user => new AuthenticationSuccessAction({ user: user }))
+                .map(user => new AuthenticationSuccessAction(user))
                 .catch(error => Observable.of(new AuthenticationErrorAction({ error: error })));
 
+        @Effect() 
+                logout$ = this.actions$
+                  .ofType(ActionTypes.LOGOUT)
+                  .switchMap(action => this.loginSvc.logout())
+                  .map(user => new LogoutSuccessAction())
 }

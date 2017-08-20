@@ -15,9 +15,9 @@ const UNKNOWN_USER: User = new User({
 export class LoginService {
     private endPoint: string = 'Polcom';
 
-    private userSubject: BehaviorSubject<User> = new BehaviorSubject<User>(UNKNOWN_USER);
+    //private userSubject: BehaviorSubject<User> = new BehaviorSubject<User>(UNKNOWN_USER);
 
-    user$: Observable<User> = this.userSubject.asObservable();
+    //user$: Observable<User>;// = this.userSubject.asObservable();
 
 
     constructor(public api: Api,
@@ -30,7 +30,7 @@ export class LoginService {
         if (this.appconfig.__APPLICATION_MODE == ApplicationMode.ONLINE) {
             return this.api.post(this.endPoint + '/Authenticate', { "USER_NAME": username, "PASSWORD": password })
                 .map(res => res.json())
-                .do(user => this.userSubject.next(user))
+                .do(user => Observable.of(user))
                 .do(user => {
                     debugger;
                     this.api.SESSION_ID = user.SESSION_ID;
@@ -39,17 +39,21 @@ export class LoginService {
                 })
                 .publishLast().refCount();
         } else {
-            this.userSubject.next(MockUser)
-            return this.user$;//this.userSubject.asObservable();
+            //this.userSubject.next(MockUser)
+            return Observable.of(MockUser).delay(1000);
+            //s.user$.;//this.userSubject.asObservable();
         }
     }
 
     logout() {
-        this.userSubject.next(UNKNOWN_USER);
-        this.api.SESSION_ID = '';
+        return new Observable(observer => {
+            //this.userSubject.next(UNKNOWN_USER);
+            this.api.SESSION_ID = '';
+            return observer.next({});
+        }).delay(1000);        
     }
 
-    get LoggedInUser(): User {
-        return this.userSubject.getValue();
-    }
+    // get LoggedInUser(): User {
+    //     return this.userSubject.getValue();
+    // }
 }

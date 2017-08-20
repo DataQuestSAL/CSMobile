@@ -3,7 +3,7 @@ import { ApplicationState } from './../store/application-state';
 import { Store } from '@ngrx/store';
 import { LoginService } from './../providers/login.service';
 import { Component } from '@angular/core';
-import { Platform } from 'ionic-angular';
+import { Platform, LoadingController, Loading } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
@@ -14,23 +14,21 @@ import { LoginPage } from "../pages/login/login";
 })
 export class MyApp {
   rootPage: any;
-
+  private loading: Loading = null;
+  
   constructor(public loginSvc: LoginService,
               platform: Platform,
               statusBar: StatusBar,
               splashScreen: SplashScreen,
-            private store: Store<ApplicationState>) {
-              debugger;
-              this.store.select('authState')
-              //.publishLast()
-              .subscribe((currentState: AuthState) => { debugger; this.rootPage = (currentState.isLoggedIn? HomePage : LoginPage) })
-    // loginSvc.user$.subscribe((user) => {
-    //   if (user.Is_Authentic) {
-    //     this.rootPage = HomePage
-    //   } else {
-    //     this.rootPage = LoginPage
-    //   }
-    // })
+              private loadingCtrl: LoadingController,
+              private store: Store<ApplicationState>) {                
+              store.select('authState')
+                  .subscribe((currentState: AuthState) => { 
+                    this.handleProgressDialog(currentState);
+                    this.rootPage = (currentState.isLoggedIn? HomePage : LoginPage) 
+
+                    
+                  })
 
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
@@ -39,5 +37,22 @@ export class MyApp {
       splashScreen.hide();
     });
   }
+
+  handleProgressDialog(_currentState) {
+    if (_currentState.inProgress && this.loading === null) {
+      this.loading = this.loadingCtrl.create({
+        content: "Logging In User..."
+      });
+      this.loading.present()
+    }
+
+
+    if (!_currentState.inProgress && this.loading !== null) {
+      this.loading && this.loading.dismiss();
+      this.loading = null;
+    }
+
+  }
+
 }
 

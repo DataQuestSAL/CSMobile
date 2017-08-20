@@ -1,3 +1,6 @@
+import { LogoutAction } from './../../store/actions/users.actions';
+import { Store } from '@ngrx/store';
+import { ApplicationState } from './../../store/application-state';
 import { LoginPage } from './../login/login';
 import { LoginService } from './../../providers/login.service';
 import { ClaimsPage } from './../claims/claims';
@@ -25,7 +28,8 @@ export class HomePage {
 
   constructor(public navCtrl: NavController,
     public loginSvc: LoginService,
-    public alertCtrl: AlertController) {
+    public alertCtrl: AlertController,
+    public store: Store<ApplicationState>) {
 
   }
 
@@ -44,7 +48,8 @@ export class HomePage {
         {
           text: 'Log Out',
           handler: () => {
-            this.loginSvc.logout();
+            //this.loginSvc.logout();
+            this.store.dispatch(new LogoutAction());
           }
         }
       ]

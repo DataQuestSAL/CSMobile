@@ -25,47 +25,28 @@ export class LoginPage {
     public loginSvc: LoginService,
     public loadingCtrl: LoadingController,
     public store: Store<ApplicationState> ) {
-      debugger;
+      
+      
+      // var dispose = this.store.select('authState')
+      // .subscribe(
+      //   (currentState: AuthState) => {
+      //     console.log("auth store changed - ", currentState);
+      //     if (currentState.user) {
+      //       dispose.unsubscribe();
+      //     }
+  
+      //     //this.handleProgressDialog(currentState);
+  
+      //     //this.error = currentState.error          
+      //   },
+      //   error => {
+      //     console.log(error)
+      //   }
+      // );
+      
   }
 
   Authenticate() {
-    // this.loading = this.loadingCtrl.create({
-    //   content: "Logging in..."
-    // } as LoadingOptions);
-
-    // this.loading.present();
-
-    var dispose = this.store.select('authState')
-    //.filter((currentState: AuthState) => currentState.inProgress)  
-    //.distinctUntilChanged()
-    .subscribe(
-      (currentState: AuthState) => {
-        console.log("auth store changed - ", currentState);
-        debugger;
-        if (currentState.user) {
-          dispose.unsubscribe();
-          //this.nav.setRoot(HomePage, {});
-        }
-
-        this.handleProgressDialog(currentState);
-
-        //this.error = currentState.error
-        
-      },
-      error => {
-        console.log(error)
-      }
-    );
-
-    // this.loginSvc.Authenticate(this.user.USER_NAME, this.user.PASSWORD).subscribe((data) => {
-    //   loading.dismiss();
-    //   //no need to change the rootNav here, this is handled in the app.component reactively
-    // },
-    //   err => {
-    //     loading.dismiss();
-    //     console.log(err)
-    //   });
-
       // set payload
       const payload = {
         username: this.user.USER_NAME,
@@ -76,21 +57,7 @@ export class LoginPage {
       this.store.dispatch(new AuthenticateAction(payload));
   }
 
-  handleProgressDialog(_currentState) {
-    if (_currentState.inProgress && this.loading === null) {
-      this.loading = this.loadingCtrl.create({
-        content: "Logging In User..."
-      });
-      this.loading.present()
-    }
 
-
-    if (!_currentState.inProgress && this.loading !== null) {
-      this.loading && this.loading.dismiss();
-      this.loading = null;
-    }
-
-  }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad LoginPage');

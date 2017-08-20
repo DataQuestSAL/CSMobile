@@ -9,14 +9,14 @@ export function authState(state: AuthState = INITIAL_AUTH_STATE, action: Action)
     debugger
     switch (action.type) {
         case ActionTypes.AUTHENTICATE:
-            return Object.assign({}, state, { inProgress: true, isLoggedIn: false, error: null })
+            return Object.assign({}, state, { isLoggedIn: false, error: null })
             //return _.clone(state)
         case ActionTypes.AUTHENTICATE_SUCCESS:
-            return Object.assign({}, state, { inProgress: false, isLoggedIn: true, user: action.payload })
+            return Object.assign({}, state, { isLoggedIn: true, user: action.payload })
         case ActionTypes.AUTHENTICATE_ERROR:
-            return Object.assign({}, state, { inProgress: false, isLoggedIn: false })
+            return Object.assign({}, state, { isLoggedIn: false, error: action.payload })
         case ActionTypes.LOGOUT:
-            return Object.assign({}, state, { inProgress: true })
+            return Object.assign({}, state, {})
         case ActionTypes.LOGOUT_SUCCESS: {
             return Object.assign({}, INITIAL_AUTH_STATE)
         }

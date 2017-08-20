@@ -23,7 +23,7 @@ export class LoginEffects {
 
         @Effect() 
                 logout$ = this.actions$
-                  .ofType(ActionTypes.LOGOUT)
-                  .switchMap(action => this.loginSvc.logout())
-                  .map(user => new LogoutSuccessAction())
+                .ofType(ActionTypes.LOGOUT)
+                .switchMap(action => this.loginSvc.logout())
+                .map(user => new LogoutSuccessAction())
 }

@@ -1,3 +1,4 @@
+import { UiState } from './../store/ui-state';
 import { AuthState } from './../store/auth-state';
 import { ApplicationState } from './../store/application-state';
 import { Store } from '@ngrx/store';
@@ -15,20 +16,27 @@ import { LoginPage } from "../pages/login/login";
 export class MyApp {
   rootPage: any;
   private loading: Loading = null;
-  
-  constructor(public loginSvc: LoginService,
-              platform: Platform,
-              statusBar: StatusBar,
-              splashScreen: SplashScreen,
-              private loadingCtrl: LoadingController,
-              private store: Store<ApplicationState>) {                
-              store.select('authState')
-                  .subscribe((currentState: AuthState) => { 
-                    this.handleProgressDialog(currentState);
-                    this.rootPage = (currentState.isLoggedIn? HomePage : LoginPage) 
 
-                    
-                  })
+  constructor(public loginSvc: LoginService,
+    platform: Platform,
+    statusBar: StatusBar,
+    splashScreen: SplashScreen,
+    private loadingCtrl: LoadingController,
+    private store: Store<ApplicationState>) {
+
+
+    //Listen to the authState and determine RootPage
+    store.select('authState')
+      .subscribe((currentState: AuthState) => {
+        this.handleProgressDialog(currentState);
+        this.rootPage = (currentState.isLoggedIn ? HomePage : LoginPage)
+      });
+
+    //Listen to uiState for loadingController maniputation
+    store.select('uiState')
+      .subscribe((currentState: UiState) => {
+        this.handleProgressDialog(currentState);
+      })
 
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
@@ -41,7 +49,7 @@ export class MyApp {
   handleProgressDialog(_currentState) {
     if (_currentState.inProgress && this.loading === null) {
       this.loading = this.loadingCtrl.create({
-        content: "Logging In User..."
+        content: _currentState.inProgressMessage
       });
       this.loading.present()
     }

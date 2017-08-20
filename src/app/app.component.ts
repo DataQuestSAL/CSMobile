@@ -28,13 +28,14 @@ export class MyApp {
     //Listen to the authState and determine RootPage
     store.select('authState')
       .subscribe((currentState: AuthState) => {
-        this.handleProgressDialog(currentState);
+        //this.handleProgressDialog(currentState);
         this.rootPage = (currentState.isLoggedIn ? HomePage : LoginPage)
       });
 
     //Listen to uiState for loadingController maniputation
     store.select('uiState')
       .subscribe((currentState: UiState) => {
+        debugger
         this.handleProgressDialog(currentState);
       })
 

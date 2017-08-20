@@ -5,6 +5,9 @@ export interface UiState {
     //currentError?: string;
     inProgress: boolean;
     inProgressMessage: string;
+    error: {
+        message: string;
+    }
 }
 
 
@@ -12,5 +15,8 @@ export const INITIAL_UI_STATE: UiState = {
     //userId: undefined,
     //currentThreadId: undefined,
     inProgress: false,
-    inProgressMessage: undefined
+    inProgressMessage: undefined,
+    error: {
+        message: undefined
+    }
 };

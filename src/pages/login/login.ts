@@ -52,7 +52,6 @@ export class LoginPage {
         username: this.user.USER_NAME,
         password: this.user.PASSWORD
       };
-  
       // dispatch AuthenticationAction and pass in payload
       this.store.dispatch(new AuthenticateAction(payload));
   }

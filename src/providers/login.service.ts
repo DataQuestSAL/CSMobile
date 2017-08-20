@@ -39,9 +39,9 @@ export class LoginService {
                 })
                 .publishLast().refCount();
         } else {
-            //this.userSubject.next(MockUser)
-            return Observable.of(MockUser).delay(1000);
-            //s.user$.;//this.userSubject.asObservable();
+            //return Observable.of(MockUser).delay(1000);
+            //simulate error
+             return Observable.throw({message: "Login Error: Invalid Username/Password"});//observer.error();
         }
     }
 

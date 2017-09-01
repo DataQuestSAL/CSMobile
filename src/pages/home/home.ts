@@ -1,3 +1,4 @@
+import { ProfilePage } from './../profile/profile';
 import { LogoutAction } from './../../store/actions/users.actions';
 import { Store } from '@ngrx/store';
 import { ApplicationState } from './../../store/application-state';
@@ -31,6 +32,10 @@ export class HomePage {
     public alertCtrl: AlertController,
     public store: Store<ApplicationState>) {
 
+  }
+
+  editProfile() {
+    this.navCtrl.push(ProfilePage);
   }
 
   logout() {

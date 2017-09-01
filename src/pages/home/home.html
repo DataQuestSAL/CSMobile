@@ -6,7 +6,7 @@
         </ion-avatar>
         <h2>{{loggedInUser?.USER_NAME}}</h2>
         <p>{{loggedInUser?.DisplayName}}</p>
-        <progress-bar [progress]="67"></progress-bar>
+        <progress-bar [progress]="67" (click)="editProfile()"></progress-bar>
         <ion-note item-end>
           <button item-end ion-button icon-only (click)="logout()" >
             <ion-icon name="log-out"></ion-icon>

@@ -4,7 +4,12 @@ import { ApplicationState } from './../store/application-state';
 import { Store } from '@ngrx/store';
 import { LoginService } from './../providers/login.service';
 import { Component } from '@angular/core';
-import { Platform, LoadingController, Loading } from 'ionic-angular';
+import {
+  Platform,
+  LoadingController,
+  Loading,
+  ToastController
+} from "ionic-angular";
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
@@ -22,6 +27,7 @@ export class MyApp {
     statusBar: StatusBar,
     splashScreen: SplashScreen,
     private loadingCtrl: LoadingController,
+    private toastCtrl: ToastController,
     private store: Store<ApplicationState>) {
 
 
@@ -35,8 +41,9 @@ export class MyApp {
     //Listen to uiState for loadingController maniputation
     store.select('uiState')
       .subscribe((currentState: UiState) => {
-        debugger
+        this.handleError(currentState);
         this.handleProgressDialog(currentState);
+
       })
 
     platform.ready().then(() => {
@@ -47,7 +54,18 @@ export class MyApp {
     });
   }
 
-  handleProgressDialog(_currentState) {
+  handleError(_currentState: UiState) {
+    if (_currentState.error) {
+      let toast = this.toastCtrl.create({
+        message: _currentState.error.message,
+        
+        duration: 3000
+      });
+      toast.present();
+    }
+  }
+
+  handleProgressDialog(_currentState: UiState) {
     if (_currentState.inProgress && this.loading === null) {
       this.loading = this.loadingCtrl.create({
         content: _currentState.inProgressMessage

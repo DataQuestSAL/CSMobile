@@ -1,3 +1,4 @@
+import { ProfilePage } from './../pages/profile/profile';
 import { LoginEffects } from './../store/effects/login.effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { INITIAL_APPLICATION_STATE } from './../store/application-state';
@@ -52,7 +53,8 @@ import { EffectsModule } from "@ngrx/effects";
     PortfolioItemComponent,
     AgentInfoComponent,
     CoversComponent,
-    ProgressBarComponent
+    ProgressBarComponent,
+    ProfilePage
   ],
   imports: [
     BrowserModule,
@@ -74,7 +76,8 @@ import { EffectsModule } from "@ngrx/effects";
     PortfolioComponent,
     AgentInfoComponent,
     CoversComponent,
-    PolicyTabsPage
+    PolicyTabsPage,
+    ProfilePage
   ],
   providers: [
     StatusBar,
